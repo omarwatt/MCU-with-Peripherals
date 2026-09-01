@@ -1,4 +1,4 @@
-# RISC-V MCU with Memory-Mapped Peripherals
+[# RISC-V MCU with Memory-Mapped Peripherals
 
 A VHDL microcontroller project that integrates a 32-bit RISC-V-based processor with GPIO, a programmable timer, PWM and input capture, UART communication, a prioritized interrupt controller, and a multicycle division accelerator.
 
@@ -246,3 +246,4 @@ For a new FPGA build, use `MCU_top` as the top entity, set `G_MODELSIM := 0`, an
 This project extends the course processor framework. Source files retain their original course copyright notices.
 
 The UART sources retain attribution to **Jakub Cabal's [uart-for-fpga](https://github.com/jakubcabal/uart-for-fpga)**, which is distributed under the MIT license. This repository includes a memory-mapped integration of that UART. Original authorship and applicable license notices should be preserved; the UART license does not establish a license for the entire course project.
+](https://github.com/omarwatt/MCU-with-Peripherals)

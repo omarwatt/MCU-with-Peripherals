@@ -1,4 +1,4 @@
-[# RISC-V MCU with Memory-Mapped Peripherals
+# RISC-V MCU with Memory-Mapped Peripherals
 
 A VHDL microcontroller project that integrates a 32-bit RISC-V-based processor with GPIO, a programmable timer, PWM and input capture, UART communication, a prioritized interrupt controller, and a multicycle division accelerator.
 

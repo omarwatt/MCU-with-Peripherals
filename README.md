@@ -41,13 +41,13 @@ The archive contains block-level testbenches and an MCU testbench. UART and MCU 
 
 These are archived implementation results, not a newly reproduced build.
 
-![GPIO simulation](docs/images/gpio-waveform.png)
+![GPIO simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/gpio-waveform.png?raw=true)
 *MemWrite transactions update LEDR and HEX0–HEX5; MemRead returns switch patterns 0x55 and 0xAA on DataBus.*
 
-![Basic Timer simulation](docs/images/timer-waveform.png)
+![Basic Timer simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/timer-waveform.png?raw=true)
 *BTCNT_q counts to BTCMPR0 = 4 and reloads, while EQU0_w marks the compare event in this archived unit test.*
 
-![Interrupt simulation](docs/images/interrupt-waveform.png)
+![Interrupt simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/interrupt-waveform.png?raw=true)
 *IFG, TYPE, INTR, and active-low INTA show interrupt requests, vector selection, and acknowledgement.*
 
 ![Processor simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/cpu-waveform.png?raw=true)

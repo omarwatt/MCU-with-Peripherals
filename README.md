@@ -50,7 +50,7 @@ These are archived implementation results, not a newly reproduced build.
 ![Interrupt simulation](docs/images/interrupt-waveform.png)
 *IFG, TYPE, INTR, and active-low INTA show interrupt requests, vector selection, and acknowledgement.*
 
-![Processor simulation](docs/images/cpu-waveform.png)
+![Processor simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/cpu-waveform.png?raw=true)
 *The archived waveform shows instruction execution through the program counter, register-write control, and ALU result.*
 
 ## Repository Structure

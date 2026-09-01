@@ -19,7 +19,7 @@ An FPGA microcontroller project integrating a 32-bit RISC-V-style processor with
 
 Interrupt handling uses custom vectors, an active-low acknowledge, `gp[0]` as a software interrupt-enable bit, and `tp` to hold the return address. This is a project-specific mechanism rather than the standard RISC-V privileged interrupt architecture.
 
-![GPIO RTL structure](https://github.com/omarwatt/MCU-with-Peripherals/tree/main/DOCS/images/gpio-rtl.png)
+![GPIO RTL structure](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/gpio-rtl.png?raw=true)
 *Address decoding selects the GPIO registers and display outputs.*
 
 ## Tools and Technologies

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-An FPGA microcontroller project integrating a 32-bit RISC-V-style processor with GPIO, a timer, UART, and interrupt handling. The work covers processor–peripheral integration, memory-mapped control, interrupt-driven firmware, and simulation of individual blocks and the complete MCU.
+An FPGA microcontroller project integrating a 32-bit RISC-V-style processor with GPIO, a timer, UART, and interrupt handling. The work covers processor–peripheral integration, memory-mapped control, interrupt-driven firmware, simulation, and on-board verification using Signal Tap.
 
 ## Main Features
 
@@ -24,7 +24,7 @@ Interrupt handling uses custom vectors, an active-low acknowledge, `gp[0]` as a 
 
 ## Tools and Technologies
 
-VHDL, RISC-V assembly/C benchmarks, Intel Quartus Prime, ModelSim/Questa, Intel `altsyncram` memories, and a Cyclone V FPGA.
+VHDL, RISC-V assembly/C benchmarks, Intel Quartus Prime, ModelSim/Questa, Signal Tap Logic Analyzer, Intel `altsyncram` memories, and the DE10-Standard FPGA board.
 
 ## Simulation and Results
 
@@ -50,8 +50,18 @@ These are archived implementation results, not a newly reproduced build.
 ![Interrupt simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/interrupt-waveform.png?raw=true)
 *IFG, TYPE, INTR, and active-low INTA show interrupt requests, vector selection, and acknowledgement.*
 
-![Processor simulation](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/cpu-waveform.png?raw=true)
-*The archived waveform shows instruction execution through the program counter, register-write control, and ALU result.*
+### On-Board Verification with Signal Tap
+
+![On-board MCU Signal Tap capture](https://github.com/omarwatt/MCU-with-Peripherals/blob/main/DOCS/images/signal-tap-verification.png?raw=true)
+*The hardware capture shows the program counter, instruction words, advancing MCLK counter, and GPIO outputs during execution on the DE10-Standard board.*
+
+The MCU was programmed onto the DE10-Standard board, and internal processor signals and peripheral outputs were captured using Signal Tap. The archived capture appears in `DOC/pre.pdf`, Figure 21 on page 14; `QUARTUS/stp1.stp` contains the Signal Tap session and recorded data.
+
+- **Instruction execution:** the program counter advances through addresses including `0x00AC`–`0x00CC` and returns to the program loop, with instruction words captured alongside it.
+- **Clock activity:** the MCLK counter advances from `0xF54E` to `0xF55D` in the displayed window, showing continued processor-clock activity.
+- **Peripheral outputs:** `HEX0 = 0x78` and `HEX1 = 0x02` retain the programmed display values; `HEX2`–`HEX5` show `0x40`, and `LEDR` is zero. `PWM_o` is low and `UART_TXD` is high during this window.
+
+The report compares the captured instruction flow and GPIO output states with the ModelSim benchmark run. This provides on-board evidence of processor execution and peripheral integration. The displayed idle UART and PWM levels do not independently verify serial transfers or PWM timing.
 
 ## Repository Structure
 
@@ -59,7 +69,7 @@ These are archived implementation results, not a newly reproduced build.
 - `TB/`: block and MCU testbenches.
 - `SIM/`: waveform configuration scripts.
 - `Benchmark apps/`: example firmware and memory images.
-- `QUARTUS/`: constraints and archived FPGA outputs.
+- `QUARTUS/`: constraints, archived FPGA outputs, and the `stp1.stp` Signal Tap session.
 - `DOC/`: project report.
 - `docs/images/`: five selected design and results figures.
 
@@ -72,6 +82,8 @@ These are archived implementation results, not a newly reproduced build.
 5. Load the relevant waveform script under `SIM/` and run the testbench.
 
 The waveform scripts do not compile the design. Match the MCU testbench's timer expectations to the selected firmware; its referenced fast-timer image is absent. Align the UART clock-frequency setting with the testbench clock before testing integrated serial communication.
+
+To inspect the hardware verification, open `QUARTUS/stp1.stp` in Quartus Signal Tap and select the saved acquisition. For a new capture, connect the board through JTAG and use a matching FPGA programming file and Signal Tap configuration. Update the session's original absolute `.sof` path for your environment.
 
 ## Attribution
 
